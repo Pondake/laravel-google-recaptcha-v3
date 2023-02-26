@@ -12,6 +12,7 @@
 [![Build][ico-build]][link-build]
 [![StyleCI][ico-styleci]][link-styleci]
 
+Fork: Edited to support CURL options.
 A star would be a nice encouragement. ^.^
 
 ## Latest features:

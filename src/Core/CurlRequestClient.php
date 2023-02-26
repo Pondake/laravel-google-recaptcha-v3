@@ -22,6 +22,12 @@ class CurlRequestClient implements RequestClientInterface
         curl_setopt($curl, CURLOPT_POSTFIELDS,
             http_build_query($body));
 
+        if($curlOptions = $this->getCurlOptions()){
+            foreach($curlOptions as $key => $value){
+                curl_setopt($curl, $key, isset($value) ? $value : null);
+            }
+        }
+
         $response = curl_exec($curl);
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
@@ -36,5 +42,13 @@ class CurlRequestClient implements RequestClientInterface
         curl_close($curl);
 
         return $response;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurlOptions()
+    {
+        return config('googlerecaptchav3.curl_options');
     }
 }
